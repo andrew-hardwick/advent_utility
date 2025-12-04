@@ -1,6 +1,6 @@
 project('adventUtility', 'cpp', default_options: ['default_library=static', 'warning_level=1', 'werror=false', 'cpp_std=c++17', ], version:'0.0.1')
 
-inc_dirs = include_directories('inc/utility')
+inc_dirs = include_directories('inc')
 
 inc_dir_base = include_directories('inc')
 

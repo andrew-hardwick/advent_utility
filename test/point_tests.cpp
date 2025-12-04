@@ -1,4 +1,4 @@
-#include "utility/point.h"
+#include "point.h"
 #include <gtest/gtest.h>
 
 namespace point = advent::utility::point;
