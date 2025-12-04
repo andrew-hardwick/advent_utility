@@ -3,6 +3,11 @@
 
 namespace point = advent::utility::point;
 
+TEST(thistest, fails)
+{
+	EXPECT_TRUE(false);
+}
+
 TEST(Constructor, nominal) {
   // ARRANGE / ACT
   point::Point zero{0, 0};
