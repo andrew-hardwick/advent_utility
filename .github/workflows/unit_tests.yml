@@ -1,5 +1,5 @@
 name: unit-tests
-run-name:$ {{ GITHUB_REF }} - ${{ GITHUB_SHA }}
+run-name: ${{ github.ref }} - ${{ github.sha }}
 on: [push]
 jobs:
   run-tests:
