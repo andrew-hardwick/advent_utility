@@ -3,11 +3,6 @@
 
 namespace point = advent::utility::point;
 
-TEST(thistest, fails)
-{
-	EXPECT_TRUE(false);
-}
-
 TEST(Constructor, nominal) {
   // ARRANGE / ACT
   point::Point zero{0, 0};
@@ -239,9 +234,8 @@ TEST(operator, accumulation) {
   EXPECT_EQ(-7, r6.y);
 }
 
-TEST(operator, scalarMultiplication)
-{
-// ARRANGE
+TEST(operator, scalarMultiplication) {
+  // ARRANGE
   auto p1 = point::from("1, 2");
   auto p2 = point::from("2, 1");
 
@@ -253,13 +247,13 @@ TEST(operator, scalarMultiplication)
   int m3 = -2;
   int m4 = 3;
 
-  //ACT
+  // ACT
   auto r1 = p1 * m1;
   auto r2 = p2 * m2;
   auto r3 = p3 * m3;
   auto r4 = p4 * m4;
 
-  //ASSERT
+  // ASSERT
   EXPECT_EQ(0, r1.x);
   EXPECT_EQ(0, r1.y);
 
