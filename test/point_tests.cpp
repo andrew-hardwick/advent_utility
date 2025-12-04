@@ -2,14 +2,15 @@
 #include <gtest/gtest.h>
 
 namespace point = advent::utility::point;
+using Point = point::Point;
 
 TEST(Constructor, nominal) {
   // ARRANGE / ACT
-  point::Point zero{0, 0};
-  point::Point q1{1, 1};
-  point::Point q2{-2, 3};
-  point::Point q3{-5, -8};
-  point::Point q4{13, -21};
+  Point zero{0, 0};
+  Point q1{1, 1};
+  Point q2{-2, 3};
+  Point q3{-5, -8};
+  Point q4{13, -21};
 
   // ASSERT
   EXPECT_EQ(0, zero.x);
@@ -30,11 +31,11 @@ TEST(Constructor, nominal) {
 
 TEST(From, nominal) {
   // ARRANGE / ACT
-  auto zero = point::from("0,0");
-  auto q1 = point::from("1, 1");
-  auto q2 = point::from("-2, 3");
-  auto q3 = point::from("-5, -8");
-  auto q4 = point::from("13, -21");
+  auto zero = Point::from("0,0");
+  auto q1 = Point::from("1, 1");
+  auto q2 = Point::from("-2, 3");
+  auto q3 = Point::from("-5, -8");
+  auto q4 = Point::from("13, -21");
 
   // ASSERT
   EXPECT_EQ(0, zero.x);
@@ -55,11 +56,11 @@ TEST(From, nominal) {
 
 TEST(rotateRight, nominal) {
   // ARRANGE
-  auto zero = point::from("0,0");
-  auto q1 = point::from("1, 1");
-  auto q2 = point::from("-2, 3");
-  auto q3 = point::from("-5, -8");
-  auto q4 = point::from("13, -21");
+  auto zero = Point::from("0,0");
+  auto q1 = Point::from("1, 1");
+  auto q2 = Point::from("-2, 3");
+  auto q3 = Point::from("-5, -8");
+  auto q4 = Point::from("13, -21");
 
   // ACT
   zero = point::rotateRight(zero);
@@ -87,11 +88,11 @@ TEST(rotateRight, nominal) {
 
 TEST(Operator, equals) {
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("1, 2");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("1, 2");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-3, -4");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-3, -4");
 
   // ACT and ASSERT
   EXPECT_TRUE(p1 == p2);
@@ -103,11 +104,11 @@ TEST(Operator, equals) {
 TEST(Operator, notequals) {
 
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("1, 2");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("1, 2");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-3, -4");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-3, -4");
 
   // ACT and ASSERT
   EXPECT_TRUE(p1 != p3);
@@ -119,17 +120,17 @@ TEST(Operator, notequals) {
 TEST(Operator, lessthan) {
   // operator< is lexicographical
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("2, 1");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("2, 1");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-4, -3");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-4, -3");
 
-  auto p5 = point::from("1, 1");
-  auto p6 = point::from("1, 3");
+  auto p5 = Point::from("1, 1");
+  auto p6 = Point::from("1, 3");
 
-  auto p7 = point::from("-3, -5");
-  auto p8 = point::from("-3, -3");
+  auto p7 = Point::from("-3, -5");
+  auto p8 = Point::from("-3, -3");
 
   // ACT and ASSERT
   EXPECT_TRUE(p1 < p2);
@@ -147,17 +148,17 @@ TEST(Operator, lessthan) {
 
 TEST(operator, addition) {
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("2, 1");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("2, 1");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-4, -3");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-4, -3");
 
-  auto p5 = point::from("1, 1");
-  auto p6 = point::from("1, 3");
+  auto p5 = Point::from("1, 1");
+  auto p6 = Point::from("1, 3");
 
-  auto p7 = point::from("-3, -5");
-  auto p8 = point::from("-3, -3");
+  auto p7 = Point::from("-3, -5");
+  auto p8 = Point::from("-3, -3");
 
   // ACT
   auto r1 = p1 + p3;
@@ -188,17 +189,17 @@ TEST(operator, addition) {
 
 TEST(operator, accumulation) {
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("2, 1");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("2, 1");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-4, -3");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-4, -3");
 
-  auto p5 = point::from("1, 1");
-  auto p6 = point::from("1, 3");
+  auto p5 = Point::from("1, 1");
+  auto p6 = Point::from("1, 3");
 
-  auto p7 = point::from("-3, -5");
-  auto p8 = point::from("-3, -3");
+  auto p7 = Point::from("-3, -5");
+  auto p8 = Point::from("-3, -3");
 
   auto r1 = p1;
   auto r2 = p2;
@@ -236,11 +237,11 @@ TEST(operator, accumulation) {
 
 TEST(operator, scalarMultiplication) {
   // ARRANGE
-  auto p1 = point::from("1, 2");
-  auto p2 = point::from("2, 1");
+  auto p1 = Point::from("1, 2");
+  auto p2 = Point::from("2, 1");
 
-  auto p3 = point::from("-3, -4");
-  auto p4 = point::from("-4, -3");
+  auto p3 = Point::from("-3, -4");
+  auto p4 = Point::from("-4, -3");
 
   int m1 = 0;
   int m2 = 1;

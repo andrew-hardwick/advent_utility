@@ -6,7 +6,7 @@
 
 namespace advent::utility::point {
 
-Point from(const std::string &source) {
+Point Point::from(const std::string &source) {
   auto split = string::split(source, ',');
 
   return {std::stoi(split[0]), std::stoi(split[1])};
