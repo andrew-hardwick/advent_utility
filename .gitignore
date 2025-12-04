@@ -1,0 +1,8 @@
+**/.wraplock
+**/result/*
+**/.cache/*
+**/build/*
+
+subprojects/googletest*
+subprojects/packagecache/*
+subprojects/.wraplock
