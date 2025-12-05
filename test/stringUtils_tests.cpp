@@ -237,6 +237,7 @@ TEST(leadCharMatches, too_short_alt) {
     // ACT
     auto result = string::leadCharMatches(target, c, count);
 
+
     // ASSERT
     EXPECT_FALSE(result);
 }
