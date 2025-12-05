@@ -37,7 +37,7 @@ std::vector<std::string> split(const std::string& source, char delimiter) {
 
 std::vector<std::string> equalSubStrsOfLength(const std::string& source,
                                               std::size_t subLength) {
-	auto length = source.size();
+    auto length = source.size();
 
     auto count = length / subLength;
 
