@@ -36,8 +36,9 @@ std::vector<std::string> split(const std::string& source, char delimiter) {
 }
 
 std::vector<std::string> equalSubStrsOfLength(const std::string& source,
-                                              std::size_t length,
                                               std::size_t subLength) {
+	auto length = source.size();
+
     auto count = length / subLength;
 
     std::vector<std::string> result(count);
@@ -70,7 +71,7 @@ bool leadCharMatches(const std::string& target, char c, std::size_t count) {
     if (target.size() < count)
         return false;
 
-    for (std::size_t i = 0; i < count; i++) {
+    for (std::size_t i = 0; i <= count; i++) {
         if (target[i] != c)
             return false;
     }

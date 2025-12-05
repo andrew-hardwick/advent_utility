@@ -16,6 +16,17 @@ bool doesFileExist(const std::string& inFilename) {
     return !std::filesystem::is_directory(inPath);
 }
 
+std::stringstream readFileToStream(const std::string& inFilename)
+{
+	std::ifstream inf(inFilename);
+
+	std::stringstream strStream;
+
+	strStream << inf.rdbuf();
+
+	return strStream;
+}
+
 std::string readFileRaw(const std::string& inFilename) {
     std::ifstream inf(inFilename);
 

@@ -7,6 +7,7 @@ gtest_main_dep = gtest.get_variable('gtest_main_dep')
 
 tests = [
   'point',
+  'stringUtils',
   ]
 
 foreach t : tests

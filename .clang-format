@@ -1,0 +1,23 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+---
+Language: Cpp
+
+AllowShortBlocksOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Empty
+DerivePointerAlignment: false
+PointerAlignment: Left
+SeparateDefinitionBlocks: Always
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '"*"'
+    Priority: 1
+    SortPriority: 1
+  - Regex: '<(?!.h)*>'
+    Priority: 2
+    SortPriority: 2
+  - Regex: '<*.h>'
+    Priority: 3
+    SortPriority: 3
+---
