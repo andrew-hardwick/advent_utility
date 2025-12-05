@@ -9,7 +9,7 @@ namespace advent::utility::point {
 Point Point::from(const std::string &source) {
   auto split = string::split(source, ',');
 
-  return {std::stoi(split[0]), std::stoi(split[1])};
+  return {std::stol(split[0]), std::stol(split[1])};
 }
 
 Point rotateRight(const Point &source) { return {-source.y, source.x}; }
@@ -47,5 +47,5 @@ Point operator+=(Point &self, const Point &other) {
   return self;
 }
 
-Point operator*(const Point &a, int b) { return {a.x * b, a.y * b}; }
+Point operator*(const Point &a, int64_t b) { return {a.x * b, a.y * b}; }
 } // namespace advent::utility::point

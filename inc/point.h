@@ -5,8 +5,8 @@
 
 namespace advent::utility::point {
 struct Point {
-    int x;
-    int y;
+    int64_t x;
+    int64_t y;
 
     static Point from(const std::string& source);
 };
@@ -25,7 +25,7 @@ Point operator+(const Point& a, const Point& b);
 
 Point operator+=(Point& self, const Point& other);
 
-Point operator*(const Point& a, int b);
+Point operator*(const Point& a, int64_t b);
 } // namespace advent::utility::point
 
 #endif
