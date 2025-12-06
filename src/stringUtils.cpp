@@ -3,8 +3,9 @@
 #include <sstream>
 
 namespace advent::utility::string {
-std::vector<std::string> split(std::string source,
-                               const std::string& delimiter) {
+std::vector<std::string> split(std::string source, const std::string& delimiter,
+                               bool includeLeadingEntry,
+                               bool includeTrailingEmpty) {
     std::vector<std::string> result;
 
     std::size_t delimiterLength = delimiter.size();
@@ -14,9 +15,10 @@ std::vector<std::string> split(std::string source,
     while (loc != std::string::npos) {
         auto entry = source.substr(0, loc);
 
-        result.push_back(entry);
+        if (entry.size() > 0 || includeLeadingEntry)
+            result.push_back(entry);
 
-        if (source.substr(loc) == delimiter)
+        if (source.substr(loc) == delimiter && includeTrailingEmpty)
             result.push_back("");
 
         source = source.substr(loc + delimiterLength);

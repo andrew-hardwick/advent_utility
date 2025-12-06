@@ -6,7 +6,9 @@
 
 namespace advent::utility::string {
 std::vector<std::string> split(std::string source,
-                               const std::string& delimiter);
+                               const std::string& delimiter,
+							   bool includeLeadingEmpty = true,
+							   bool includeTrailingEmpty = true);
 
 std::vector<std::string> split(const std::string& source, char delimiter);
 

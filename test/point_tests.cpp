@@ -1,6 +1,7 @@
 #include "point.h"
 
 #include <gtest/gtest.h>
+#include <sstream>
 
 namespace point = advent::utility::point;
 using Point = point::Point;
@@ -111,11 +112,17 @@ TEST(Operator, notequals) {
     auto p3 = Point::from("-3, -4");
     auto p4 = Point::from("-3, -4");
 
+	auto p5 = Point::from("1, 3");
+	auto p6 = Point::from("-3, -5");
+
     // ACT and ASSERT
     EXPECT_TRUE(p1 != p3);
     EXPECT_TRUE(p4 != p2);
     EXPECT_FALSE(p1 != p2);
     EXPECT_FALSE(p3 != p4);
+
+	EXPECT_TRUE(p1 != p5);
+	EXPECT_TRUE(p3 != p6);
 }
 
 TEST(Operator, lessthan) {
@@ -267,4 +274,25 @@ TEST(operator, scalarMultiplication) {
 
     EXPECT_EQ(-12, r4.x);
     EXPECT_EQ(-9, r4.y);
+}
+
+TEST(Operator, stream)
+{
+	//ARRANGE
+	auto p1 = Point::from("1, 2");
+	auto p2 = Point::from("3, -5");
+
+	std::string expectedResult1 {"{ 1, 2 }"};
+	std::string expectedResult2 {"{ 3, -5 }"};
+
+	std::stringstream sstream1 {""};
+	std::stringstream sstream2 {""};
+
+	//ACT
+	sstream1 << p1;
+	sstream2 << p2;
+
+	//ASSERT
+	EXPECT_STREQ(expectedResult1.c_str(), sstream1.str().c_str());
+	EXPECT_STREQ(expectedResult2.c_str(), sstream2.str().c_str());
 }
