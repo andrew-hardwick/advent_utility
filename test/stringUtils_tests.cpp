@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <stdexcept>
+
 namespace string = advent::utility::string;
 
 TEST(split_byString, nominal) {
@@ -41,6 +43,31 @@ TEST(split_byString, nominal_alt) {
     EXPECT_STREQ("orc", result[1].c_str());
     EXPECT_STREQ("tauren", result[2].c_str());
     EXPECT_STREQ("undead", result[3].c_str());
+}
+
+TEST(split_byString, nominalFaced) {
+    // ARRANGE
+    std::string source{"c++bananac++orangec++grapec++"};
+    std::string delimiter{"c++"};
+
+    // ACT
+    auto split = string::split(source, delimiter);
+
+    // ASSERT
+    EXPECT_EQ(5, split.size());
+
+    for (const auto& e : split) {
+        std::cout << "'" << e << "'" << "\n";
+    }
+
+    if (5 != split.size())
+        return;
+
+    EXPECT_STREQ("", split[0].c_str());
+    EXPECT_STREQ("banana", split[1].c_str());
+    EXPECT_STREQ("orange", split[2].c_str());
+    EXPECT_STREQ("grape", split[3].c_str());
+    EXPECT_STREQ("", split[4].c_str());
 }
 
 TEST(split_byChar, nominal) {
@@ -237,8 +264,80 @@ TEST(leadCharMatches, too_short_alt) {
     // ACT
     auto result = string::leadCharMatches(target, c, count);
 
-
     // ASSERT
     EXPECT_FALSE(result);
 }
 
+TEST(replace_single, nominal) {
+    // ARRANGE
+    std::string source{"c++bananac++orangec++grapec++"};
+    std::string target{"c++"};
+    std::string replacement{"++c"};
+
+    std::string expectedResult{"++cbanana++corange++cgrape++c"};
+
+    // ACT
+    auto result = string::replace(source, target, replacement);
+
+    // ASSERT
+    EXPECT_STREQ(expectedResult.c_str(), result.c_str());
+}
+
+TEST(replace_multiple, nominal) {
+    // ARRANGE
+    std::string source{"trollhumanorchumantaurenhumanundead"};
+    std::vector<std::string> targets{"troll", "orc", "tauren", "undead"};
+    std::vector<std::string> replacements{"horde1", "horde2", "horde3",
+                                          "horde4"};
+
+    std::string expectedResult{"horde1humanhorde2humanhorde3humanhorde4"};
+
+    // ACT
+    auto result = string::replace(source, targets, replacements);
+
+    // ASSERT
+    EXPECT_STREQ(expectedResult.c_str(), result.c_str());
+}
+
+TEST(replace_multiple, nominal_alt) {
+    // ARRANGE
+    std::string source{"c++bananac++orangec++grapec++"};
+    std::vector<std::string> targets{"banana", "orange", "grape"};
+    std::vector<std::string> replacements{"yellow", "well,orange,innit",
+                                          "purple"};
+
+    std::string expectedResult{"c++yellowc++well,orange,innitc++purplec++"};
+
+    // ACT
+    auto result = string::replace(source, targets, replacements);
+
+    // ASSERT
+    EXPECT_STREQ(expectedResult.c_str(), result.c_str());
+}
+
+TEST(replace_multiple, mismatchLength) {
+    // ARRANGE
+    std::string source{"c++bananac++orangec++grapec++"};
+    std::vector<std::string> targets{"banana", "orange", "grape"};
+    std::vector<std::string> replacements{"yellow", "purple"};
+
+    std::string expectedResult{"c++yellowc++well,orange,innitc++purplec++"};
+
+    // ACT and ASSERT
+    EXPECT_THROW(string::replace(source, targets, replacements),
+                 std::invalid_argument);
+}
+
+TEST(replace_multiple, mismatchLength_alt) {
+    // ARRANGE
+    std::string source{"c++bananac++orangec++grapec++"};
+    std::vector<std::string> targets{"banana", "grape"};
+    std::vector<std::string> replacements{"yellow", "well,orange,innit",
+                                          "purple"};
+
+    std::string expectedResult{"c++yellowc++well,orange,innitc++purplec++"};
+
+    // ACT and ASSERT
+    EXPECT_THROW(string::replace(source, targets, replacements),
+                 std::invalid_argument);
+}

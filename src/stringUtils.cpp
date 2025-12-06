@@ -14,11 +14,13 @@ std::vector<std::string> split(std::string source,
     while (loc != std::string::npos) {
         auto entry = source.substr(0, loc);
 
-        if (entry.size() > 0) {
-            result.push_back(entry);
-        }
+        result.push_back(entry);
+
+        if (source.substr(loc) == delimiter)
+            result.push_back("");
 
         source = source.substr(loc + delimiterLength);
+
         loc = source.find(delimiter);
     }
 
