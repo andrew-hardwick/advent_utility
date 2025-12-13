@@ -12,11 +12,15 @@ source = [
   'src/stringUtils.cpp',
 ]
 
+nlohmann_json = subproject('json')
+nlohmann_json_dep = nlohmann_json.get_variable('nlohmann_json_dep')
+
 adventUtility = library(
   'adventUtility',
   source,
   include_directories:inc_dirs,
   dependencies:[
+    nlohmann_json_dep,
   ],
 )
 

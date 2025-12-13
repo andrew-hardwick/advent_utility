@@ -65,4 +65,14 @@ std::vector<std::string> readFileToLines(const std::string& inFilename) {
 
     return result;
 }
+
+nlohmann::json readFileToJson(const std::string& inFilename) {
+    nlohmann::json result;
+
+    std::ifstream inf(inFilename);
+
+    inf >> result;
+
+    return result;
+}
 } // namespace advent::utility::fileOps

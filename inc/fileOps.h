@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "nlohmann/json.hpp"
 
 namespace advent::utility::fileOps {
 bool doesFileExist(const std::string& inFilename);
@@ -12,6 +13,8 @@ std::string readFileRaw(const std::string& inFilename);
 std::vector<char> readFileToChars(const std::string& inFilename);
 
 std::vector<std::string> readFileToLines(const std::string& inFilename);
+
+nlohmann::json readFileToJson(const std::string& inFilename);
 } // namespace advent::utility::fileOps
 
 #endif
